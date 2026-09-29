@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>TRUTH × DARE: CHAOS MODE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Choose your fate. Reveal your truth. Survive the dare.">
+</head>
+<body>
+    <div id="app-container">
+
+        <!-- HEADER / NAVIGATION (Hidden on home) -->
+        <header id="game-header" class="hidden">
+            <button id="btn-back" class="icon-btn" aria-label="Back">🔙</button>
+            <div id="header-title">TRUTH × DARE</div>
+            <button id="btn-settings-header" class="icon-btn" aria-label="Settings">⚙️</button>
+        </header>
+
+        <!-- MAIN SCREENS CONTAINER -->
+        <main id="screens-container">
+
+            <!-- HOME SCREEN -->
+            <section id="screen-home" class="screen active">
+                <div class="logo-container">
+                    <h1 class="main-logo">
+                        <span class="word-truth">TRUTH</span>
+                        <span class="cross">×</span>
+                        <span class="word-dare">DARE</span>
+                        <span class="chaos-badge">CHAOS MODE</span>
+                    </h1>
+                    <p class="tagline">"Choose your fate. Reveal your truth. Survive the dare."</p>
+                </div>
+
+                <div class="menu-buttons">
+                    <button id="btn-play-now" class="btn btn-primary btn-glow">PLAY NOW</button>
+                    <button id="btn-create-game" class="btn btn-secondary">CREATE GAME</button>
+                    <button id="btn-how-to-play" class="btn btn-secondary">HOW TO PLAY</button>
+                    <button id="btn-settings" class="btn btn-secondary">SETTINGS</button>
+                </div>
+
+                <div class="stats-mini hidden" id="home-stats">
+                    <!-- Dynamic stats like games played -->
+                </div>
+            </section>
+
+            <!-- PLAYER SETUP SCREEN -->
+            <section id="screen-setup" class="screen hidden">
+                <h2 class="screen-title">WHO'S PLAYING?</h2>
+
+                <div id="players-list" class="players-grid">
+                    <!-- Player cards injected here -->
+                </div>
+
+                <div class="add-player-form">
+                    <input type="text" id="input-player-name" placeholder="Enter name" maxlength="15">
+                    <div class="avatar-selector" id="avatar-selector">
+                        <!-- Avatars -->
+                        <span class="avatar-option selected" data-avatar="😎">😎</span>
+                        <span class="avatar-option" data-avatar="😇">😇</span>
+                        <span class="avatar-option" data-avatar="😂">😂</span>
+                        <span class="avatar-option" data-avatar="😈">😈</span>
+                        <span class="avatar-option" data-avatar="🧠">🧠</span>
+                        <span class="avatar-option" data-avatar="😏">😏</span>
+                        <span class="avatar-option" data-avatar="🤪">🤪</span>
+                    </div>
+                    <button id="btn-add-player" class="btn btn-outline">+ ADD PLAYER</button>
+                </div>
+
+                <button id="btn-setup-next" class="btn btn-primary mt-auto" disabled>NEXT (Need 2+)</button>
+            </section>
+
+            <!-- MODE SELECTION SCREEN -->
+            <section id="screen-mode" class="screen hidden">
+                <h2 class="screen-title">SELECT MODE</h2>
+                <div class="modes-list">
+                    <div class="mode-card selected" data-mode="classic">
+                        <h3>1. CLASSIC</h3>
+                        <p>Traditional Truth or Dare with scoring.</p>
+                    </div>
+                    <div class="mode-card" data-mode="chaos">
+                        <h3>2. CHAOS</h3>
+                        <p>Random events can interrupt normal gameplay.</p>
+                    </div>
+                    <div class="mode-card" data-mode="battle">
+                        <h3>3. BATTLE</h3>
+                        <p>Two players compete in challenges.</p>
+                    </div>
+                    <div class="mode-card" data-mode="team">
+                        <h3>4. TEAM</h3>
+                        <p>Players are divided into teams.</p>
+                    </div>
+                    <div class="mode-card" data-mode="secret">
+                        <h3>5. SECRET</h3>
+                        <p>Challenge type hidden until reveal.</p>
+                    </div>
+                </div>
+                <button id="btn-mode-next" class="btn btn-primary mt-auto">NEXT</button>
+            </section>
+
+            <!-- CATEGORY SELECTION SCREEN -->
+            <section id="screen-categories" class="screen hidden">
+                <h2 class="screen-title">CATEGORIES</h2>
+                <div class="category-columns">
+                    <div class="category-col">
+                        <h3>TRUTH</h3>
+                        <label><input type="checkbox" value="innocent" checked> 😇 Innocent</label>
+                        <label><input type="checkbox" value="funny" checked> 😂 Funny</label>
+                        <label><input type="checkbox" value="deep" checked> 🧠 Deep</label>
+                        <label><input type="checkbox" value="savage" checked> 😈 Savage</label>
+                        <label><input type="checkbox" value="impossible"> 🤯 Impossible</label>
+                        <label><input type="checkbox" value="secret"> 👀 Secret</label>
+                        <label><input type="checkbox" value="relationship"> ❤️ Relationship</label>
+                    </div>
+                    <div class="category-col">
+                        <h3>DARE</h3>
+                        <label><input type="checkbox" value="funny" checked> 😂 Funny</label>
+                        <label><input type="checkbox" value="acting" checked> 🎭 Acting</label>
+                        <label><input type="checkbox" value="voice" checked> 🗣️ Voice</label>
+                        <label><input type="checkbox" value="skill" checked> 🧠 Skill</label>
+                        <label><input type="checkbox" value="chaos" checked> 🤪 Chaos</label>
+                        <label><input type="checkbox" value="performance"> 🕺 Performance</label>
+                        <label><input type="checkbox" value="group"> 👥 Group</label>
+                    </div>
+                </div>
+                <button id="btn-categories-next" class="btn btn-primary mt-auto">NEXT</button>
+            </section>
+
+            <!-- DIFFICULTY SELECTION SCREEN -->
+            <section id="screen-difficulty" class="screen hidden">
+                <h2 class="screen-title">DIFFICULTY</h2>
+                <div class="difficulty-list">
+                    <div class="diff-card" data-diff="easy">
+                        <h3>EASY (+1)</h3>
+                        <p>Light and fun.</p>
+                    </div>
+                    <div class="diff-card selected" data-diff="medium">
+                        <h3>MEDIUM (+2)</h3>
+                        <p>Getting interesting.</p>
+                    </div>
+                    <div class="diff-card" data-diff="hard">
+                        <h3>HARD (+4)</h3>
+                        <p>Risky territory.</p>
+                    </div>
+                    <div class="diff-card" data-diff="insane">
+                        <h3>INSANE (+8)</h3>
+                        <p>No regrets.</p>
+                    </div>
+                </div>
+                <button id="btn-start-game" class="btn btn-primary btn-glow mt-auto">START GAME</button>
+            </section>
+
+            <!-- PLAYER TRANSITION SCREEN -->
+            <section id="screen-transition" class="screen hidden centered-content">
+                <h3 class="transition-title">NEXT PLAYER</h3>
+                <div id="transition-avatar" class="large-avatar">😎</div>
+                <h2 id="transition-name" class="massive-name">PLAYER</h2>
+                <p class="transition-text">"Your fate awaits..."</p>
+                <div id="transition-countdown" class="countdown-large">3</div>
+            </section>
+
+            <!-- FATE WHEEL SCREEN -->
+            <section id="screen-wheel" class="screen hidden centered-content">
+                <h2 class="screen-title">WHAT WILL FATE CHOOSE?</h2>
+                <div class="wheel-container">
+                    <div class="wheel-pointer">▼</div>
+                    <div id="fate-wheel" class="wheel">
+                        <!-- Wheel segments drawn by CSS/JS -->
+                    </div>
+                </div>
+                <div id="wheel-result-display" class="wheel-result hidden">
+                    <span id="wheel-result-text">🔥 DARE SELECTED</span>
+                </div>
+                <button id="btn-spin-wheel" class="btn btn-primary btn-glow mt-auto">SPIN FATE</button>
+                <button id="btn-wheel-continue" class="btn btn-primary hidden mt-auto">CONTINUE</button>
+            </section>
+
+            <!-- CHALLENGE CARD SCREEN -->
+            <section id="screen-challenge" class="screen hidden centered-content">
+                <div class="challenge-hud">
+                    <span id="hud-player">Player</span>
+                    <span id="hud-score">Score: 0</span>
+                </div>
+
+                <div class="card-container">
+                    <div id="challenge-card" class="challenge-card">
+                        <div class="card-header">
+                            <span id="card-type">🔥 DARE</span>
+                            <span id="card-level">LEVEL 7</span>
+                            <span id="card-category">😈 SAVAGE</span>
+                        </div>
+                        <div class="card-body">
+                            <p id="challenge-text">"Call someone in the room and convince them that you are secretly famous."</p>
+                        </div>
+                        <div id="card-timer-container" class="card-timer hidden">
+                            <span id="timer-display">30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="challenge-actions" id="challenge-pre-actions">
+                     <button id="btn-start-challenge" class="btn btn-primary">START CHALLENGE</button>
+                     <button id="btn-reroll-challenge" class="btn btn-outline">REROLL</button>
+                </div>
+
+                <div class="challenge-actions hidden" id="challenge-active-actions">
+                     <button id="btn-complete-challenge" class="btn btn-success">COMPLETE</button>
+                     <button id="btn-fail-challenge" class="btn btn-danger">FAILED</button>
+                </div>
+            </section>
+
+            <!-- CHAOS EVENT SCREEN -->
+            <section id="screen-event" class="screen hidden centered-content">
+                <h2 class="event-title blink-text">CHAOS ACTIVATED!</h2>
+                <div class="event-card">
+                    <div class="event-icon" id="event-icon">🔄</div>
+                    <h3 id="event-name">SWITCH</h3>
+                    <p id="event-desc">"Choose another player to take your challenge."</p>
+                </div>
+                <button id="btn-event-continue" class="btn btn-primary mt-auto">ACCEPT FATE</button>
+            </section>
+
+            <!-- MYSTERY BOX SCREEN -->
+            <section id="screen-mystery" class="screen hidden centered-content">
+                <h2 class="event-title">MYSTERY BOX</h2>
+                <div id="mystery-box-container" class="mystery-box-container">
+                    <div class="box-icon">🎁</div>
+                    <p>Tap to open</p>
+                </div>
+                <div id="mystery-reward" class="event-card hidden">
+                    <div class="event-icon" id="reward-icon">💰</div>
+                    <h3 id="reward-name">+5 Points</h3>
+                    <p id="reward-desc">You got lucky!</p>
+                </div>
+                <button id="btn-mystery-continue" class="btn btn-primary mt-auto hidden">CONTINUE</button>
+            </section>
+
+            <!-- FINAL ROUND / RESULTS SCREEN -->
+            <section id="screen-results" class="screen hidden centered-content">
+                <h2 class="screen-title text-glow">GAME OVER</h2>
+                <h3 class="subtitle">🏆 FINAL RESULTS</h3>
+
+                <div id="leaderboard" class="leaderboard-container">
+                    <!-- Leaderboard items -->
+                </div>
+
+                <div id="fun-stats" class="fun-stats-grid">
+                    <!-- Fun stats -->
+                </div>
+
+                <div class="menu-buttons">
+                    <button id="btn-play-again" class="btn btn-primary">PLAY AGAIN</button>
+                    <button id="btn-new-game" class="btn btn-secondary">NEW GAME</button>
+                    <button id="btn-home-from-results" class="btn btn-secondary">HOME</button>
+                </div>
+            </section>
+
+            <!-- SETTINGS SCREEN -->
+            <section id="screen-settings" class="screen hidden">
+                <h2 class="screen-title">SETTINGS</h2>
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <span>Sound</span>
+                        <label class="switch"><input type="checkbox" id="set-sound" checked><span class="slider"></span></label>
+                    </div>
+                    <div class="setting-item">
+                        <span>Animations</span>
+                        <label class="switch"><input type="checkbox" id="set-anim" checked><span class="slider"></span></label>
+                    </div>
+                    <div class="setting-item">
+                        <span>Trust System</span>
+                        <label class="switch"><input type="checkbox" id="set-trust" checked><span class="slider"></span></label>
+                    </div>
+                    <div class="setting-item">
+                        <span>Chaos Events</span>
+                        <label class="switch"><input type="checkbox" id="set-chaos" checked><span class="slider"></span></label>
+                    </div>
+                    <div class="setting-item">
+                        <span>Rounds</span>
+                        <input type="number" id="set-rounds" value="10" min="5" max="50">
+                    </div>
+                    <div class="setting-item mt-4">
+                        <button id="btn-reset-data" class="btn btn-danger-outline">Reset Game Data</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HOW TO PLAY SCREEN -->
+            <section id="screen-tutorial" class="screen hidden">
+                <h2 class="screen-title">HOW TO PLAY</h2>
+                <div class="tutorial-content">
+                    <ol>
+                        <li><strong>Add players</strong> (minimum required based on mode).</li>
+                        <li><strong>Select a mode</strong> like Classic or Chaos.</li>
+                        <li><strong>Spin Fate</strong> when it's your turn.</li>
+                        <li><strong>Complete Truths/Dares</strong> to earn points.</li>
+                        <li><strong>Survive Chaos Events</strong> that can change the game completely.</li>
+                        <li><strong>Reach the Final Round</strong> and become the Chaos Champion!</li>
+                    </ol>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- MODALS -->
+        <div id="modal-overlay" class="modal-overlay hidden">
+            <div id="modal-content" class="modal-content">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/app.js"></script>
+<script src="js/global.js"></script>
+</body>
+</html>
